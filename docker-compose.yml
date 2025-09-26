@@ -1,0 +1,46 @@
+
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: ai_job
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+      - redis
+    ports:
+      - '8080:8080'
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/ai_job
+      NLP_SERVICE_URL: http://nlp-service:8001
+      REDIS_URL: redis://redis:6379
+
+  nlp-service:
+    build: ./nlp-service
+    ports:
+      - '8001:8001'
+
+  automation-worker:
+    build: ./automation-worker
+
+  worker:
+    build: ./worker
+    depends_on:
+      - redis
+      - backend
+      - automation-worker
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/ai_job
+      REDIS_URL: redis://redis:6379
