@@ -1,0 +1,3 @@
+# To push the reorganized project structure to the remote repository, run:
+
+git push origin main
