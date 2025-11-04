@@ -1,0 +1,17 @@
+# Git Setup and Push Commands for AI Job Applier
+
+# Navigate to the project directory
+cd C:\Users\shara\OneDrive\Documents\ai-job-applier\new-structure
+
+# Add your remote repository (replace with your actual repository URL)
+# Example for GitHub:
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+
+# Push the main branch to the remote repository
+git push -u origin main
+
+# Alternative: If you're pushing to an existing repository with content,
+# you might need to force push or merge first:
+# git pull origin main --allow-unrelated-histories
+# Then resolve any conflicts and push again:
+# git push -u origin main

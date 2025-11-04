@@ -1,0 +1,19 @@
+{
+  "name": "@ai-job-applier/auth",
+  "version": "1.0.0",
+  "description": "Authentication utilities for AI Job Applier",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.1",
+    "@ai-job-applier/types": "workspace:*",
+    "@ai-job-applier/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.2",
+    "typescript": "^5.2.2"
+  }
+}

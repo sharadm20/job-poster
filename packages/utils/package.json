@@ -1,0 +1,13 @@
+{
+  "name": "@ai-job-applier/utils",
+  "version": "1.0.0",
+  "description": "Utility functions for AI Job Applier",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

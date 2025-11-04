@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@ai-job-applier/shared": ["packages/shared/src/index.ts"],
+      "@ai-job-applier/database": ["packages/database/src/index.ts"],
+      "@ai-job-applier/auth": ["packages/auth/src/index.ts"],
+      "@ai-job-applier/utils": ["packages/utils/src/index.ts"],
+      "@ai-job-applier/types": ["packages/types/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build"]
+}

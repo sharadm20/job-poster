@@ -1,0 +1,10 @@
+{
+  "tools": {
+    "shell": {
+      "enableInteractiveShell": true,
+      "showColor": true,
+      "pager": "less"
+    }
+  },
+  "$version": 2
+}

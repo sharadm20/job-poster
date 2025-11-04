@@ -1,0 +1,13 @@
+{
+  "name": "@ai-job-applier/types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types for AI Job Applier",
+  "main": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

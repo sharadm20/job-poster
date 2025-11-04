@@ -1,0 +1,17 @@
+{
+  "name": "@ai-job-applier/database",
+  "version": "1.0.0",
+  "description": "Database utilities for AI Job Applier",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "mongoose": "^7.4.1",
+    "@ai-job-applier/types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
