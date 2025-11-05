@@ -24,10 +24,10 @@
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
     "playwright": "^1.40.0",
-    "@ai-job-applier/database": "workspace:*",
-    "@ai-job-applier/shared": "workspace:*",
-    "@ai-job-applier/types": "workspace:*",
-    "@ai-job-applier/utils": "workspace:*"
+    "@ai-job-applier/database": "file:../../packages/database",
+    "@ai-job-applier/shared": "file:../../packages/shared",
+    "@ai-job-applier/types": "file:../../packages/types",
+    "@ai-job-applier/utils": "file:../../packages/utils"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",

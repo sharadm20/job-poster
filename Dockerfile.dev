@@ -1,0 +1,24 @@
+# Use the official Node.js 18 image
+# https://hub.docker.com/_/node
+FROM node:18-alpine
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Install build dependencies
+RUN apk add --no-cache python3 make g++
+
+# Copy package files
+COPY package*.json ./
+
+# Install all dependencies (including dev dependencies)
+RUN npm ci
+
+# Copy the rest of the application
+COPY . .
+
+# Expose ports (default for any service)
+EXPOSE 3000 8080
+
+# The command will be overridden by the docker-compose.dev.yml
+CMD ["npm", "run", "dev"]

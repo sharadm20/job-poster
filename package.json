@@ -17,13 +17,20 @@
     "docker:down": "docker-compose -f docker/compose/docker-compose.yml down"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0",
-    "typescript": "^5.2.2",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.45.0"
+    "concurrently": "^8.2.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.2.2"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/joi": "^17.2.2",
+    "@types/jsonwebtoken": "^9.0.10",
+    "joi": "^18.0.1"
   }
 }

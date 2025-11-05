@@ -5,12 +5,18 @@ import { ERROR_MESSAGES, HTTP_STATUS } from '@ai-job-applier/shared';
 import { IApiResponse } from '@ai-job-applier/types';
 
 export class JobController {
+  private jobService: JobService;
+
+  constructor() {
+    this.jobService = new JobService();
+  }
+
   /**
    * Get all jobs
    */
-  public static async getAllJobs(req: Request, res: Response): Promise<void> {
+  public async getAllJobs(req: Request, res: Response): Promise<void> {
     try {
-      const jobs = await JobService.getAllJobs();
+      const jobs = await this.jobService.getAllJobs();
       res.status(HTTP_STATUS.OK).json({ 
         success: true,
         data: jobs,
@@ -28,11 +34,11 @@ export class JobController {
   /**
    * Start job scraping process
    */
-  public static async startScraping(req: Request, res: Response): Promise<void> {
+  public async startScraping(req: Request, res: Response): Promise<void> {
     try {
       const scrapeData = req.body;
 
-      const result = await JobService.startScraping(scrapeData);
+      const result = await this.jobService.startScraping(scrapeData);
 
       res.status(HTTP_STATUS.OK).json({ 
         success: true,
@@ -60,11 +66,11 @@ export class JobController {
   /**
    * Get jobs by user ID (for authenticated users)
    */
-  public static async getJobsByUser(req: Request, res: Response): Promise<void> {
+  public async getJobsByUser(req: Request, res: Response): Promise<void> {
     try {
       // Implementation would filter jobs by userId
       // For now returning all jobs
-      const jobs = await JobService.getAllJobs();
+      const jobs = await this.jobService.getAllJobs();
       res.status(HTTP_STATUS.OK).json({ 
         success: true,
         data: jobs,
@@ -82,7 +88,7 @@ export class JobController {
   /**
    * Get a specific job by ID
    */
-  public static async getJobById(req: Request, res: Response): Promise<void> {
+  public async getJobById(req: Request, res: Response): Promise<void> {
     try {
       // Implementation will be added later
       res.status(HTTP_STATUS.NOT_FOUND).json({ 

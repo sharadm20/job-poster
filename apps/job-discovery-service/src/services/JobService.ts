@@ -17,7 +17,7 @@ export class JobService implements IJobService {
    * Get all jobs
    * @returns List of jobs
    */
-  public static async getAllJobs(): Promise<Omit<IJob, 'description'>[]> {
+  public async getAllJobs(): Promise<Omit<IJob, 'description'>[]> {
     try {
       const jobs = await Job.find({}, { description: 0 }) // Exclude description for performance
         .sort({ postedDate: -1 }) // Sort by newest first
@@ -38,7 +38,7 @@ export class JobService implements IJobService {
    * @param scrapeData - The scraping parameters
    * @returns Result of the scraping process
    */
-  public static async startScraping(scrapeData: IScrapeRequest): Promise<IScrapeResponse> {
+  public async startScraping(scrapeData: IScrapeRequest): Promise<IScrapeResponse> {
     // Validate input data
     const { error } = scrapeValidationSchema.validate(scrapeData);
     if (error) {
@@ -66,7 +66,7 @@ export class JobService implements IJobService {
    * @param scrapeData - The scraping parameters 
    * @returns Simulated job data
    */
-  private static async simulateScraping(scrapeData: IScrapeRequest): Promise<IJob[]> {
+  private async simulateScraping(scrapeData: IScrapeRequest): Promise<IJob[]> {
     // This is a simulation - in a real implementation, we would scrape actual job boards
     const { source, keywords, location, maxResults = 20 } = scrapeData;
     
@@ -100,7 +100,7 @@ export class JobService implements IJobService {
    * @param jobs - Jobs to save
    * @returns Number of jobs saved
    */
-  public static async saveJobs(jobs: IJob[]): Promise<number> {
+  public async saveJobs(jobs: IJob[]): Promise<number> {
     try {
       const savedJobs = await Job.insertMany(jobs);
       return savedJobs.length;

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "mongoose": "^7.4.1",
-    "@ai-job-applier/types": "workspace:*"
+    "@ai-job-applier/types": "file:../types"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

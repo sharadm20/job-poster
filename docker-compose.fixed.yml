@@ -1,0 +1,104 @@
+services:
+  # MongoDB for user data
+  mongodb:
+    image: mongo:6.0
+    container_name: ai-job-applier-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    env_file:
+      - .env
+
+  # Redis for caching and queues
+  redis:
+    image: redis:7-alpine
+    container_name: ai-job-applier-redis
+    ports:
+      - "6379:6379"
+    env_file:
+      - .env
+
+  # User Service
+  user-service:
+    build: 
+      context: .
+      dockerfile: ./apps/user-service/Dockerfile
+    container_name: ai-job-applier-user-service
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/ai-job-applier?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - mongodb
+      - redis
+    restart: unless-stopped
+    env_file:
+      - .env
+
+  # Auth Service
+  auth-service:
+    build: 
+      context: .
+      dockerfile: ./apps/auth-service/Dockerfile
+    container_name: ai-job-applier-auth-service
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/ai-job-applier?authSource=admin
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - mongodb
+      - redis
+    restart: unless-stopped
+    env_file:
+      - .env
+
+  # Job Discovery Service
+  job-discovery-service:
+    build: 
+      context: .
+      dockerfile: ./apps/job-discovery-service/Dockerfile
+    container_name: ai-job-applier-job-discovery-service
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/ai-job-applier?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - mongodb
+      - redis
+    restart: unless-stopped
+    env_file:
+      - .env
+
+  # API Gateway
+  api-gateway:
+    build: 
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+    container_name: ai-job-applier-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - USER_SERVICE_URL=http://user-service:3000
+      - AUTH_SERVICE_URL=http://auth-service:3000
+      - JOB_DISCOVERY_SERVICE_URL=http://job-discovery-service:3000
+    depends_on:
+      - user-service
+      - auth-service
+      - job-discovery-service
+    restart: unless-stopped
+    env_file:
+      - .env
+
+volumes:
+  mongodb_data:

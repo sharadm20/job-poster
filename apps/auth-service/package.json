@@ -23,11 +23,11 @@
     "joi": "^17.9.2",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.1",
-    "@ai-job-applier/database": "workspace:*",
-    "@ai-job-applier/shared": "workspace:*",
-    "@ai-job-applier/types": "workspace:*",
-    "@ai-job-applier/utils": "workspace:*",
-    "@ai-job-applier/auth": "workspace:*"
+    "@ai-job-applier/database": "file:../../packages/database",
+    "@ai-job-applier/shared": "file:../../packages/shared",
+    "@ai-job-applier/types": "file:../../packages/types",
+    "@ai-job-applier/utils": "file:../../packages/utils",
+    "@ai-job-applier/auth": "file:../../packages/auth"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",

@@ -19,9 +19,9 @@
     "http-proxy-middleware": "^2.0.6",
     "axios": "^1.4.0",
     "jsonwebtoken": "^9.0.1",
-    "@ai-job-applier/shared": "workspace:*",
-    "@ai-job-applier/types": "workspace:*",
-    "@ai-job-applier/auth": "workspace:*"
+    "@ai-job-applier/shared": "file:../../packages/shared",
+    "@ai-job-applier/types": "file:../../packages/types",
+    "@ai-job-applier/auth": "file:../../packages/auth"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",

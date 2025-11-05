@@ -9,8 +9,8 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@ai-job-applier/types": "workspace:*",
-    "@ai-job-applier/utils": "workspace:*"
+    "@ai-job-applier/types": "file:../types",
+    "@ai-job-applier/utils": "file:../utils"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

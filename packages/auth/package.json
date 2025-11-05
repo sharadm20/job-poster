@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.1",
-    "@ai-job-applier/types": "workspace:*",
-    "@ai-job-applier/utils": "workspace:*"
+    "@ai-job-applier/types": "file:../types",
+    "@ai-job-applier/utils": "file:../utils"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.2",

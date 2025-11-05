@@ -91,6 +91,9 @@ export class AuthService implements IAuthService {
     }
 
     // Verify the password
+    if (!user.password) {
+      throw new Error(ERROR_MESSAGES.INVALID_CREDENTIALS);
+    }
     const isPasswordValid = await verifyPassword(password, user.password);
     if (!isPasswordValid) {
       throw new Error(ERROR_MESSAGES.INVALID_CREDENTIALS);
