@@ -42,12 +42,17 @@ COPY packages/shared/package*.json ./packages/shared/
 COPY packages/types/package*.json ./packages/types/
 COPY packages/utils/package*.json ./packages/utils/
 
+# Copy built packages from the builder stage
+COPY --from=builder /usr/src/app/packages ./packages
+
+# Create symlinks for local packages
+RUN mkdir -p node_modules/@ai-job-applier && cp -r packages/* node_modules/@ai-job-applier/
+
 # Install only production dependencies
 RUN npm ci --legacy-peer-deps --only=production
 
 # Copy built application from the builder stage
 COPY --from=builder /usr/src/app/apps ./apps
-COPY --from=builder /usr/src/app/packages ./packages
 
 # Expose the port the app runs on
 EXPOSE 3000

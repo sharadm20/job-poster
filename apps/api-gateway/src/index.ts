@@ -2,7 +2,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+const proxy = require('http-proxy-middleware');
 import { authMiddleware } from './middlewares/auth.middleware';
 import { HTTP_STATUS } from '@ai-job-applier/shared';
 
@@ -35,7 +35,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 // Proxy middleware for user service
-app.use('/api/users', createProxyMiddleware({
+app.use('/api/users', proxy({
   target: USER_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
@@ -44,7 +44,7 @@ app.use('/api/users', createProxyMiddleware({
 }));
 
 // Proxy middleware for auth service
-app.use('/api/auth', createProxyMiddleware({
+app.use('/api/auth', proxy({
   target: AUTH_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
@@ -54,7 +54,7 @@ app.use('/api/auth', createProxyMiddleware({
 
 // Proxy middleware for job discovery service
 // Only authenticated users can access job endpoints
-app.use('/api/jobs', authMiddleware, createProxyMiddleware({
+app.use('/api/jobs', authMiddleware, proxy({
   target: JOB_DISCOVERY_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
