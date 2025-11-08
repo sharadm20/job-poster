@@ -1,5 +1,22 @@
 # Microservices Architecture with gRPC and GraphQL Todo List
 
+## Completed Milestones:
+- [x] Created protobuf definitions for user, auth, and job services
+- [x] Added GraphQL schema definition to API Gateway
+- [x] Implemented GraphQL resolvers that will connect to gRPC services
+- [x] Created Apollo Server integration in API Gateway
+- [x] Updated API Gateway to serve both REST (for backward compatibility) and GraphQL endpoints
+- [x] Added Apollo Client for GraphQL operations in frontend
+- [x] Created GraphQL service with queries and mutations
+- [x] Implemented GraphQL API service to replace REST API calls
+- [x] Updated dependency injection container to use GraphQL service
+- [x] Implemented TDD approach with tests created before functionality
+
+## Note: Transitioning to GitHub Issues
+- [ ] Moving forward, track progress using GitHub Issues for better project management
+- [ ] Create separate issues for each remaining task below
+- [ ] Use GitHub Projects for visual tracking of progress
+
 ## Phase 1: Language and Technology Decisions
 - [ ] Evaluate benefits of migrating to Go for better native gRPC support
 - [ ] Compare Go vs TypeScript for microservice implementation
@@ -16,26 +33,17 @@
 
 ## Phase 3: gRPC Infrastructure Setup
 - [ ] Install gRPC and Protocol Buffers dependencies in all services (or Go equivalents)
-- [ ] Create a shared `proto` directory to store .proto files
-- [ ] Define protobuf messages for user, auth, and job entities
-- [ ] Define gRPC service interfaces for each microservice
 - [ ] Generate code from .proto files (Go or TypeScript)
 - [ ] Set up gRPC server in auth-service
 - [ ] Set up gRPC server in user-service
 - [ ] Set up gRPC server in job-discovery-service
 
 ## Phase 4: GraphQL Implementation for API Gateway
-- [ ] Install GraphQL dependencies in API Gateway (Apollo Server, etc.)
-- [ ] Define GraphQL schema for user, auth, and job entities
-- [ ] Create GraphQL resolvers in API Gateway
 - [ ] Connect resolvers to gRPC services
 - [ ] Implement GraphQL query and mutation resolvers
 - [ ] Add GraphQL subscriptions if needed
 
 ## Phase 5: Frontend GraphQL Integration
-- [ ] Install GraphQL client in frontend (Apollo Client, etc.)
-- [ ] Create GraphQL queries and mutations for frontend
-- [ ] Update frontend services to use GraphQL instead of REST
 - [ ] Implement GraphQL caching and state management
 - [ ] Set up GraphQL subscriptions for real-time data
 
