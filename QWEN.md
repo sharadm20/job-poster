@@ -3,3 +3,4 @@
 - User is running npm run dev in background and I should not run it again. I need to fix compile and runtime issues without running npm run dev myself.
 - Use Next.js, tailwindcss and typescript with jest for our frontend app instead of vite.
 - From now on, use Next.js, TailwindCSS and TypeScript with Jest for frontend app, following Test Driven Development and clean architecture practices.
+- Decision made to implement gRPC for inter-service communication instead of REST APIs for better performance, type safety, and efficiency in microservice-to-microservice communication.

@@ -25,6 +25,7 @@ public/
 # Logs
 logs
 *.log
+*.log.*
 
 # Runtime data
 pids
@@ -77,3 +78,18 @@ yarn.lock
 
 # Git credentials
 .git-credentials
+
+# Database data directories
+mongo-data/
+redis-data/
+
+# Binary files
+*.bin
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Environment specific
+.env.local
+.env.*.local
