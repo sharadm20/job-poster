@@ -5,3 +5,5 @@
 - From now on, use Next.js, TailwindCSS and TypeScript with Jest for frontend app, following Test Driven Development and clean architecture practices.
 - Decision made to implement gRPC for inter-service communication instead of REST APIs for better performance, type safety, and efficiency in microservice-to-microservice communication.
 - Considering migration to Go for better native gRPC support, improved performance, and more efficient microservice communication compared to TypeScript/Node.js.
+- Decision made to implement GraphQL for frontend-to-API Gateway communication to provide more flexible data fetching, reduce over-fetching/under-fetching, and improve frontend performance.
+- Commitment to use Test Driven Development (TDD) approach for all new features and components to ensure high quality and maintainability.
