@@ -25,7 +25,7 @@ RUN npm ci --legacy-peer-deps
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN npm run build --workspace=auth-service
 
 # Production stage
 FROM node:18-alpine

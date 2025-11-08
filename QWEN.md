@@ -1,2 +1,5 @@
 ## Qwen Added Memories
 - AI Job Applier Project Context: Today we successfully reorganized the existing project into a professional monorepo structure with microservices architecture. The project now has: apps/ directory with user-service, auth-service, job-discovery-service, and api-gateway; packages/ directory with shared libraries (shared, database, auth, utils, types); complete documentation in docs/; CI/CD workflows in .github/workflows; Docker configuration; and all changes committed to the git repository. The project is in excellent shape with clean architecture, TypeScript throughout, and proper development practices. The repository is at commit be72635 with 2 commits ahead of origin/main. To push changes: git push origin main.
+- User is running npm run dev in background and I should not run it again. I need to fix compile and runtime issues without running npm run dev myself.
+- Use Next.js, tailwindcss and typescript with jest for our frontend app instead of vite.
+- From now on, use Next.js, TailwindCSS and TypeScript with Jest for frontend app, following Test Driven Development and clean architecture practices.

@@ -8,13 +8,15 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace=user-service\" \"npm run dev --workspace=auth-service\" \"npm run dev --workspace=job-discovery-service\" \"npm run dev --workspace=api-gateway\"",
+    "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=user-service\" \"npm run dev --workspace=auth-service\" \"npm run dev --workspace=job-discovery-service\" \"npm run dev --workspace=api-gateway\"",
+    "dev:backend": "concurrently \"npm run dev --workspace=user-service\" \"npm run dev --workspace=auth-service\" \"npm run dev --workspace=job-discovery-service\" \"npm run dev --workspace=api-gateway\"",
+    "dev:frontend": "npm run dev --workspace=frontend",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "lint": "eslint . --ext .ts,.tsx",
-    "docker:build": "docker-compose -f docker/compose/docker-compose.yml build",
-    "docker:up": "docker-compose -f docker/compose/docker-compose.yml up -d",
-    "docker:down": "docker-compose -f docker/compose/docker-compose.yml down"
+    "docker:build": "docker-compose -f docker-compose.yml build",
+    "docker:up": "docker-compose -f docker-compose.yml up -d",
+    "docker:down": "docker-compose -f docker-compose.yml down"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",

@@ -1,5 +1,6 @@
 // packages/utils/src/index.ts
 // Utility functions
+import bcrypt from 'bcryptjs';
 
 export const validateEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -11,14 +12,14 @@ export const sanitizeInput = (input: string): string => {
 };
 
 export const hashPassword = async (password: string): Promise<string> => {
-  // In a real implementation, use bcrypt or similar
-  // For now, return a simple "hash" for the refactor
-  return `hashed_${password}_${Date.now()}`;
+  // Use lower salt rounds for faster hashing in development
+  // In production, consider using higher values like 12-15 for better security
+  const saltRounds = process.env.NODE_ENV === 'production' ? 12 : 4;
+  return await bcrypt.hash(password, saltRounds);
 };
 
 export const verifyPassword = async (password: string, hash: string): Promise<boolean> => {
-  // In a real implementation, use bcrypt.compare or similar
-  return hash === `hashed_${password}_${hash.split('_')[2]}`;
+  return await bcrypt.compare(password, hash);
 };
 
 export const generateRandomString = (length: number): string => {

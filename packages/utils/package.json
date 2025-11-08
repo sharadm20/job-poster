@@ -7,6 +7,9 @@
   "scripts": {
     "build": "tsc"
   },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  },
   "devDependencies": {
     "typescript": "^5.2.2"
   }

@@ -24,7 +24,7 @@ services:
 
   # User Service
   user-service:
-    build: 
+    build:
       context: .
       dockerfile: apps/user-service/Dockerfile
     container_name: ai-job-applier-user-service
@@ -43,7 +43,7 @@ services:
 
   # Auth Service
   auth-service:
-    build: 
+    build:
       context: .
       dockerfile: apps/auth-service/Dockerfile
     container_name: ai-job-applier-auth-service
@@ -63,7 +63,7 @@ services:
 
   # Job Discovery Service
   job-discovery-service:
-    build: 
+    build:
       context: .
       dockerfile: apps/job-discovery-service/Dockerfile
     container_name: ai-job-applier-job-discovery-service
@@ -82,7 +82,7 @@ services:
 
   # API Gateway
   api-gateway:
-    build: 
+    build:
       context: .
       dockerfile: apps/api-gateway/Dockerfile
     container_name: ai-job-applier-api-gateway
@@ -96,6 +96,23 @@ services:
       - user-service
       - auth-service
       - job-discovery-service
+    restart: unless-stopped
+    env_file:
+      - .env
+
+  # Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+    container_name: ai-job-applier-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+    depends_on:
+      - api-gateway
     restart: unless-stopped
     env_file:
       - .env

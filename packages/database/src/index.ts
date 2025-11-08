@@ -76,7 +76,12 @@ export async function connectDB(): Promise<void> {
   const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-job-applier';
   
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 30000, // 30 seconds to select the server
+      socketTimeoutMS: 45000,          // 45 seconds of inactivity before closing the connection
+      maxPoolSize: 10,                 // Maintain up to 10 socket connections
+      bufferCommands: false            // Disable mongoose buffering
+    });
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Database connection error:', error);
