@@ -4,3 +4,4 @@
 - Use Next.js, tailwindcss and typescript with jest for our frontend app instead of vite.
 - From now on, use Next.js, TailwindCSS and TypeScript with Jest for frontend app, following Test Driven Development and clean architecture practices.
 - Decision made to implement gRPC for inter-service communication instead of REST APIs for better performance, type safety, and efficiency in microservice-to-microservice communication.
+- Considering migration to Go for better native gRPC support, improved performance, and more efficient microservice communication compared to TypeScript/Node.js.
