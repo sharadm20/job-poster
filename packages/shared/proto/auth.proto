@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package auth;
+
+import "user.proto";
+
+// Authentication service definition
+service AuthService {
+  rpc Register (RegisterRequest) returns (AuthResponse);
+  rpc Login (LoginRequest) returns (AuthResponse);
+  rpc VerifyToken (VerifyTokenRequest) returns (VerifyTokenResponse);
+}
+
+// Request and response messages
+message RegisterRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string password = 4;
+  string location = 5;
+  int32 experience = 6;
+  repeated string skills = 7;
+  user.UserPreferences preferences = 8;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message VerifyTokenRequest {
+  string token = 1;
+}
+
+message VerifyTokenResponse {
+  bool success = 1;
+  string message = 2;
+  string error = 3;
+  string userId = 4;
+  string email = 5;
+}
+
+message AuthResponse {
+  bool success = 1;
+  user.User user = 2;
+  string token = 3;
+  string message = 4;
+  string error = 5;
+}

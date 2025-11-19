@@ -52,3 +52,5 @@ export class AuthService {
     return payload ? payload.userId : null;
   }
 }
+
+export { OAuthService } from './oauth-service';

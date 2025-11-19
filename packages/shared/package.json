@@ -10,7 +10,15 @@
   },
   "dependencies": {
     "@ai-job-applier/types": "file:../types",
-    "@ai-job-applier/utils": "file:../utils"
+    "@ai-job-applier/utils": "file:../utils",
+    "redis": "^4.6.15",
+    "winston": "^3.11.0",
+    "@opentelemetry/sdk-node": "^0.45.1",
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.39.4",
+    "@opentelemetry/instrumentation-express": "^0.33.0",
+    "@opentelemetry/instrumentation-http": "^0.45.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.45.1"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

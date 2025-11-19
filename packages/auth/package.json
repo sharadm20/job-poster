@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.1",
+    "openid-client": "^6.1.0",
     "@ai-job-applier/types": "file:../types",
     "@ai-job-applier/utils": "file:../utils"
   },

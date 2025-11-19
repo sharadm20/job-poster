@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package job;
+
+import "user.proto";
+
+// Job discovery service definition
+service JobService {
+  rpc GetJobs (GetJobsRequest) returns (GetJobsResponse);
+  rpc GetJobById (GetJobByIdRequest) returns (GetJobResponse);
+  rpc GetUserJobs (GetUserJobsRequest) returns (GetJobsResponse);
+  rpc ScrapeJobs (ScrapeJobsRequest) returns (ScrapeJobsResponse);
+}
+
+// Job model
+message Job {
+  string id = 1;
+  string title = 2;
+  string company = 3;
+  string location = 4;
+  string postedDate = 5;
+  string url = 6;
+  string source = 7;
+  bool remote = 8;
+  string salary = 9;
+  string jobType = 10;
+  string experienceLevel = 11;
+  repeated string skills = 12;
+  repeated string benefits = 13;
+}
+
+// Get jobs request
+message GetJobsRequest {
+  string userId = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message GetJobsResponse {
+  bool success = 1;
+  repeated Job jobs = 2;
+  string message = 3;
+  string error = 4;
+}
+
+// Get job by ID request
+message GetJobByIdRequest {
+  string id = 1;
+}
+
+message GetJobResponse {
+  bool success = 1;
+  Job job = 2;
+  string message = 3;
+  string error = 4;
+}
+
+// Get user jobs request
+message GetUserJobsRequest {
+  string userId = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+// Scrape jobs request
+message ScrapeJobsRequest {
+  string source = 1;
+  repeated string keywords = 2;
+  string location = 3;
+  int32 maxResults = 4;
+  string userId = 5;
+}
+
+message ScrapeJobsResponse {
+  bool success = 1;
+  repeated Job jobs = 2;
+  int32 jobCount = 3;
+  string message = 4;
+  string error = 5;
+}
