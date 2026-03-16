@@ -1,0 +1,2 @@
+tests/registration-integration.test.ts(14,22): error TS2307: Cannot find module '@ai-job-applier/database' or its corresponding type declarations.
+tests/registration-integration.test.ts(15,29): error TS2307: Cannot find module './src/services/AuthService' or its corresponding type declarations.

@@ -2,7 +2,8 @@
 
 export interface User {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   bio?: string;
   skills?: string[];
@@ -15,6 +16,9 @@ export interface UserCredentials {
   password: string;
 }
 
-export interface UserRegistrationData extends UserCredentials {
-  name: string;
+export interface UserRegistrationData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 }

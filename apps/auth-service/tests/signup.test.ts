@@ -1,21 +1,23 @@
 import request from 'supertest';
-import { connectDB, disconnectDB, User } from '@ai-job-applier/database';
+import mongoose from 'mongoose';
+import { User } from '@ai-job-applier/database';
 import { AuthService } from '../src/services/AuthService';
+import { connect, closeDatabase, clearDatabase } from './setup';
 
 describe('Signup functionality', () => {
   let authService: AuthService;
 
   beforeAll(async () => {
-    await connectDB();
+    await connect();
     authService = new AuthService();
   });
 
+  beforeEach(async () => {
+    await clearDatabase();
+  });
+
   afterAll(async () => {
-    // Clean up test data
-    await User.deleteMany({ 
-      email: { $in: ['test@example.com', 'jane@example.com', 'jane_duplicate_test@example.com', 'jane_duplicate_test2@example.com'] } 
-    });
-    await disconnectDB();
+    await closeDatabase();
   });
 
   it('should successfully register a new user and persist to MongoDB', async () => {
@@ -35,17 +37,17 @@ describe('Signup functionality', () => {
     expect(result?.user.email).toBe(userData.email);
     expect(result?.user.firstName).toBe(userData.firstName);
     expect(result?.user.lastName).toBe(userData.lastName);
-    
+
     // Verify that the user was actually saved to the database
     const savedUser = await User.findOne({ email: userData.email });
     expect(savedUser).toBeDefined();
     expect(savedUser?.firstName).toBe(userData.firstName);
     expect(savedUser?.lastName).toBe(userData.lastName);
     expect(savedUser?.email).toBe(userData.email);
-    
+
     // Verify password was hashed (should not match the original)
     expect(savedUser?.password).not.toBe(userData.password);
-    
+
     // Verify that the password can be verified with bcrypt
     const isPasswordValid = await authService.login({
       email: userData.email,

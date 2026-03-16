@@ -22,5 +22,6 @@ module.exports = {
     '^@ai-job-applier/auth$': '<rootDir>/../../packages/auth/src',
     '^@ai-job-applier/utils$': '<rootDir>/../../packages/utils/src',
     '^@ai-job-applier/types$': '<rootDir>/../../packages/types/src'
-  }
+  },
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts']
 };

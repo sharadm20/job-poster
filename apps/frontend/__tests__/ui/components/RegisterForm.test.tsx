@@ -19,7 +19,8 @@ describe('RegisterForm', () => {
   const mockOnSuccess = jest.fn();
   const mockOnSwitchToLogin = jest.fn();
   const mockRegistrationData: UserRegistrationData = {
-    name: 'John Doe',
+    firstName: 'John',
+    lastName: 'Doe',
     email: 'test@example.com',
     password: 'password123'
   };
@@ -30,14 +31,15 @@ describe('RegisterForm', () => {
 
   it('renders correctly', () => {
     render(
-      <RegisterForm 
-        onSuccess={mockOnSuccess} 
-        onSwitchToLogin={mockOnSwitchToLogin} 
+      <RegisterForm
+        onSuccess={mockOnSuccess}
+        onSwitchToLogin={mockOnSwitchToLogin}
       />
     );
 
     expect(screen.getByRole('heading', { name: /register/i })).toBeInTheDocument();
-    expect(screen.getByLabelText('Full Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('First Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Last Name')).toBeInTheDocument();
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /register/i })).toBeInTheDocument();
@@ -46,21 +48,24 @@ describe('RegisterForm', () => {
 
   it('allows user to enter registration data', () => {
     render(
-      <RegisterForm 
-        onSuccess={mockOnSuccess} 
-        onSwitchToLogin={mockOnSwitchToLogin} 
+      <RegisterForm
+        onSuccess={mockOnSuccess}
+        onSwitchToLogin={mockOnSwitchToLogin}
       />
     );
 
-    const nameInput = screen.getByLabelText('Full Name');
+    const firstNameInput = screen.getByLabelText('First Name');
+    const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
 
-    fireEvent.change(nameInput, { target: { value: mockRegistrationData.name } });
+    fireEvent.change(firstNameInput, { target: { value: mockRegistrationData.firstName } });
+    fireEvent.change(lastNameInput, { target: { value: mockRegistrationData.lastName } });
     fireEvent.change(emailInput, { target: { value: mockRegistrationData.email } });
     fireEvent.change(passwordInput, { target: { value: mockRegistrationData.password } });
 
-    expect(nameInput).toHaveValue(mockRegistrationData.name);
+    expect(firstNameInput).toHaveValue(mockRegistrationData.firstName);
+    expect(lastNameInput).toHaveValue(mockRegistrationData.lastName);
     expect(emailInput).toHaveValue(mockRegistrationData.email);
     expect(passwordInput).toHaveValue(mockRegistrationData.password);
   });
@@ -70,18 +75,20 @@ describe('RegisterForm', () => {
     (container.registerUseCase.execute as jest.MockedFunction<any>).mockImplementation(mockExecute);
 
     render(
-      <RegisterForm 
-        onSuccess={mockOnSuccess} 
-        onSwitchToLogin={mockOnSwitchToLogin} 
+      <RegisterForm
+        onSuccess={mockOnSuccess}
+        onSwitchToLogin={mockOnSwitchToLogin}
       />
     );
 
-    const nameInput = screen.getByLabelText('Full Name');
+    const firstNameInput = screen.getByLabelText('First Name');
+    const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
     const submitButton = screen.getByRole('button', { name: /register/i });
 
-    fireEvent.change(nameInput, { target: { value: mockRegistrationData.name } });
+    fireEvent.change(firstNameInput, { target: { value: mockRegistrationData.firstName } });
+    fireEvent.change(lastNameInput, { target: { value: mockRegistrationData.lastName } });
     fireEvent.change(emailInput, { target: { value: mockRegistrationData.email } });
     fireEvent.change(passwordInput, { target: { value: mockRegistrationData.password } });
     fireEvent.click(submitButton);
@@ -98,18 +105,20 @@ describe('RegisterForm', () => {
     (container.registerUseCase.execute as jest.MockedFunction<any>).mockImplementation(mockExecute);
 
     render(
-      <RegisterForm 
-        onSuccess={mockOnSuccess} 
-        onSwitchToLogin={mockOnSwitchToLogin} 
+      <RegisterForm
+        onSuccess={mockOnSuccess}
+        onSwitchToLogin={mockOnSwitchToLogin}
       />
     );
 
-    const nameInput = screen.getByLabelText('Full Name');
+    const firstNameInput = screen.getByLabelText('First Name');
+    const lastNameInput = screen.getByLabelText('Last Name');
     const emailInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
     const submitButton = screen.getByRole('button', { name: /register/i });
 
-    fireEvent.change(nameInput, { target: { value: mockRegistrationData.name } });
+    fireEvent.change(firstNameInput, { target: { value: mockRegistrationData.firstName } });
+    fireEvent.change(lastNameInput, { target: { value: mockRegistrationData.lastName } });
     fireEvent.change(emailInput, { target: { value: mockRegistrationData.email } });
     fireEvent.change(passwordInput, { target: { value: mockRegistrationData.password } });
     fireEvent.click(submitButton);
@@ -122,9 +131,9 @@ describe('RegisterForm', () => {
 
   it('calls onSwitchToLogin when login button is clicked', () => {
     render(
-      <RegisterForm 
-        onSuccess={mockOnSuccess} 
-        onSwitchToLogin={mockOnSwitchToLogin} 
+      <RegisterForm
+        onSuccess={mockOnSuccess}
+        onSwitchToLogin={mockOnSwitchToLogin}
       />
     );
 

@@ -1,0 +1,20 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.1 (Turbopack)
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 3.7s
+   Running TypeScript ...
+Failed to compile.
+
+./src/app/dashboard/page.tsx:49:78
+Type error: Property 'name' does not exist on type 'User'.
+
+[0m [90m 47 |[39m     [33m<[39m[33mdiv[39m className[33m=[39m[32m"max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8"[39m[33m>[39m
+ [90m 48 |[39m       [33m<[39m[33mdiv[39m className[33m=[39m[32m"bg-white shadow rounded-lg p-6"[39m[33m>[39m
+[31m[1m>[22m[39m[90m 49 |[39m         [33m<[39m[33mh1[39m className[33m=[39m[32m"text-3xl font-bold text-gray-900 mb-6"[39m[33m>[39m[33mWelcome[39m[33m,[39m {user[33m.[39mname}[33m![39m[33m<[39m[33m/[39m[33mh1[39m[33m>[39m
+ [90m    |[39m                                                                              [31m[1m^[22m[39m
+ [90m 50 |[39m         
+ [90m 51 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6"[39m[33m>[39m
+ [90m 52 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"bg-gray-50 p-6 rounded-lg"[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null

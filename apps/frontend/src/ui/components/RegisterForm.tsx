@@ -11,10 +11,11 @@ interface RegisterFormProps {
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin }) => {
-  const [registrationData, setRegistrationData] = useState<UserRegistrationData>({ 
-    name: '', 
-    email: '', 
-    password: '' 
+  const [registrationData, setRegistrationData] = useState<UserRegistrationData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -23,7 +24,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
       await container.registerUseCase.execute(registrationData);
       onSuccess();
@@ -48,32 +49,51 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
         <h2 className="text-3xl font-bold text-gray-800">Register</h2>
         <p className="mt-2 text-gray-600">Create your account</p>
       </div>
-      
+
       {error && (
         <div className="p-3 text-red-700 bg-red-100 rounded-md">
           {error}
         </div>
       )}
-      
+
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              value={registrationData.name}
-              onChange={handleChange}
-              disabled={loading}
-              className="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              placeholder="John Doe"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                First Name
+              </label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                required
+                value={registrationData.firstName}
+                onChange={handleChange}
+                disabled={loading}
+                className="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                placeholder="John"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                Last Name
+              </label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                required
+                value={registrationData.lastName}
+                onChange={handleChange}
+                disabled={loading}
+                className="w-full px-4 py-2 mt-1 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Doe"
+              />
+            </div>
           </div>
-          
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
@@ -90,7 +110,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
               placeholder="you@example.com"
             />
           </div>
-          
+
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
@@ -119,7 +139,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onSwitchToLogin 
           </button>
         </div>
       </form>
-      
+
       <div className="text-center">
         <button
           type="button"
